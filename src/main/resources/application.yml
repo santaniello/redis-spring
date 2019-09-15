@@ -1,0 +1,35 @@
+spring:
+  cache:
+    redis:
+      enabled: true
+      host: localhost
+      port: 6379
+      password:
+      client-options:
+        pingBeforeActivateConnection: false
+        cancelCommandsOnReconnectFailure: true
+        autoReconnect: true
+        suspendReconnectOnProtocolFailure: false
+      pool-config:
+        maxIdle: 2
+        maxTotal: 30
+        minIdle: 2
+      client-config:
+        clientName: frete-hub-client
+        commandTimeout: 2
+        shutdownTimeout: 0
+
+logging:
+  level:
+    org.springframework.data.redis.core.RedisTemplate: DEBUG
+
+#management:
+#  endpoints:
+#    web:
+#      base-path: /actuator
+#      exposure:
+#        include: refresh, mappings, httptrace, metrics, heapdump, loggers, info, env, logfile, health, configprops, routes, hystrix.stream, monitoring
+#    enabled-by-default: true
+#  endpoint:
+#    health:
+#      show-details: always
