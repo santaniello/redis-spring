@@ -2,6 +2,7 @@ package br.com.example.redisspring.redis.configs;
 
 
 import br.com.example.redisspring.redis.RedisCacheErrorHandler;
+import br.com.example.redisspring.redis.properties.RedisClientConfigProperties;
 import br.com.example.redisspring.redis.properties.RedisClientOptionsProperties;
 import br.com.example.redisspring.redis.properties.RedisGeneralProperties;
 import io.lettuce.core.ClientOptions;
@@ -63,9 +64,13 @@ public class RedisGeneralConfig extends CachingConfigurerSupport implements Cach
     @Bean
     public LettucePoolingClientConfiguration lettucePoolConfig(ClientOptions options, @Qualifier("redisResources") ClientResources dcr){
         GenericObjectPoolConfig poolConfig = redisConfigProperties.getPoolConfig().getGenericObjectPoolConfig();
+        RedisClientConfigProperties clientConfig = redisConfigProperties.getClientConfig();
         return LettucePoolingClientConfiguration.builder()
                 .poolConfig(poolConfig)
                 .clientOptions(options)
+                .clientName(clientConfig.getClientName())
+                .shutdownTimeout(clientConfig.getShutdownTimeout())
+                .commandTimeout(clientConfig.getCommandTimeout())
                 .clientResources(dcr)
                 .build();
     }

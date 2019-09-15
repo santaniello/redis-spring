@@ -17,11 +17,4 @@ public class RedisGeneralProperties {
     private RedisClientOptionsProperties clientOptions;
     private RedisClientConfigProperties clientConfig;
     private PoolProperties poolConfig;
-
-    @PostConstruct
-    public void init(){
-        System.out.println("Teste Generalllllllllllllllllllllllllllllllll");
-        System.out.println(poolConfig);
-        System.out.println(clientConfig);
-    }
 }

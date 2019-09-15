@@ -6,14 +6,14 @@ spring:
       port: 6379
       password:
       client-options:
-        pingBeforeActivateConnection: false
+        pingBeforeActivateConnection: true
         cancelCommandsOnReconnectFailure: true
         autoReconnect: true
         suspendReconnectOnProtocolFailure: false
       pool-config:
-        maxIdle: 2
-        maxTotal: 30
-        minIdle: 2
+        maxIdle: 8
+        maxTotal: 8
+        minIdle: 0
       client-config:
         clientName: frete-hub-client
         commandTimeout: 2
